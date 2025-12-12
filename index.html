@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +22,12 @@
                         'slide-up': 'slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                         'pop': 'pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
                         'pulse-subtle': 'pulseSubtle 2s infinite',
+                        'bounce-in': 'bounceIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'fade-in': 'fadeIn 0.5s ease-in-out forwards',
+                        'slide-in-left': 'slideInLeft 0.5s ease-in-out forwards',
+                        'slide-in-right': 'slideInRight 0.5s ease-in-out forwards',
+                        'rotate-in': 'rotateIn 0.5s ease-in-out forwards',
+                        'scale-up': 'scaleUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -42,6 +49,32 @@
                         pulseSubtle: {
                             '0%, 100%': { opacity: '1' },
                             '50%': { opacity: '0.85' },
+                        },
+                        bounceIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.3)' },
+                            '50%': { opacity: '1', transform: 'scale(1.05)' },
+                            '70%': { transform: 'scale(0.9)' },
+                            '100%': { transform: 'scale(1)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-20px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(20px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        rotateIn: {
+                            '0%': { opacity: '0', transform: 'rotate(-90deg)' },
+                            '100%': { opacity: '1', transform: 'rotate(0deg)' },
+                        },
+                        scaleUp: {
+                            '0%': { transform: 'scale(0.95)' },
+                            '100%': { transform: 'scale(1)' },
                         }
                     }
                 }
@@ -74,17 +107,17 @@
            
             <!-- HEADER -->
             <div class="text-center mb-6 mt-4 animate-fade-in-up no-print">
-                <h1 class="text-2xl md:text-3xl font-bold text-sky-500 mb-2 tracking-tight">
+                <h1 class="text-2xl md:text-3xl font-bold text-sky-500 mb-2 tracking-tight animate-bounce-in">
                     Regression Answer Checker
                 </h1>
-                <p class="text-gray-500 text-sm md:text-base mb-4 font-medium">
+                <p class="text-gray-500 text-sm md:text-base mb-4 font-medium animate-fade-in" style="animation-delay: 200ms;">
                     Verify your manual calculations
                 </p>
                
                 <!-- Usage Counter Badge -->
-                <div class="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-gray-200 transition-transform hover:scale-105 duration-300">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-gray-200 transition-transform hover:scale-105 duration-300 animate-slide-in-left" style="animation-delay: 400ms;">
                     <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Global Calculations</span>
-                    <span id="usage-count-display" class="bg-sky-100 text-sky-700 px-2 py-0.5 rounded-md text-sm font-bold min-w-[30px] flex justify-center items-center">
+                    <span id="usage-count-display" class="bg-sky-100 text-sky-700 px-2 py-0.5 rounded-md text-sm font-bold min-w-[30px] flex justify-center items-center animate-rotate-in">
                         <svg class="animate-spin h-3 w-3 text-sky-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -93,18 +126,18 @@
                 </div>
             </div>
             <!-- MODEL SELECTOR -->
-            <div class="bg-white rounded-2xl p-5 shadow-lg border border-gray-200 animate-fade-in-up no-print hover:shadow-xl transition-shadow duration-300">
-                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-2 mb-4">
+            <div class="bg-white rounded-2xl p-5 shadow-lg border border-gray-200 animate-fade-in-up no-print hover:shadow-xl transition-shadow duration-300" style="animation-delay: 600ms;">
+                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-2 mb-4 animate-slide-in-right">
                     1. Choose Model
                 </h2>
                 <div class="flex flex-col gap-2">
-                    <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-xl border transition-all duration-300 bg-sky-50 border-sky-200 shadow-sm" id="label-simple">
+                    <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-xl border transition-all duration-300 bg-sky-50 border-sky-200 shadow-sm animate-pop" id="label-simple" style="animation-delay: 700ms;">
                         <input type="radio" name="model" value="simple" checked onchange="handleModelChange('simple')" class="w-5 h-5 accent-sky-500 transition-transform group-active:scale-90">
                         <span class="font-medium transition-colors text-sky-700 group-hover:text-sky-600" id="text-simple">
                             Simple Regression (Y on X)
                         </span>
                     </label>
-                    <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-xl border transition-all duration-300 bg-transparent border-transparent hover:bg-gray-50" id="label-multiple">
+                    <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-xl border transition-all duration-300 bg-transparent border-transparent hover:bg-gray-50 animate-pop" id="label-multiple" style="animation-delay: 800ms;">
                         <input type="radio" name="model" value="multiple" onchange="handleModelChange('multiple')" class="w-5 h-5 accent-sky-500 transition-transform group-active:scale-90">
                         <span class="font-medium transition-colors text-gray-600 group-hover:text-sky-600" id="text-multiple">
                             Multiple Regression (Y on X₁, X₂)
@@ -114,49 +147,49 @@
             </div>
             <!-- DATA INPUT -->
             <div class="bg-white rounded-2xl p-5 shadow-lg border border-gray-200 animate-fade-in-up no-print hover:shadow-xl transition-shadow duration-300" style="animation-delay: 100ms;">
-                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-2 mb-4">
+                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-2 mb-4 animate-slide-in-left" style="animation-delay: 900ms;">
                     2. Enter Data
                 </h2>
                
-                <div class="bg-blue-50 border-l-4 border-sky-500 p-3 rounded-r-lg mb-6 text-sm text-gray-700 shadow-sm">
+                <div class="bg-blue-50 border-l-4 border-sky-500 p-3 rounded-r-lg mb-6 text-sm text-gray-700 shadow-sm animate-fade-in" style="animation-delay: 1000ms;">
                     <strong>Tip:</strong> Enter numbers vertically (like a column) or separated by spaces/commas.
                 </div>
                 <div class="space-y-6">
-                    <div class="relative group">
+                    <div class="relative group animate-scale-up" style="animation-delay: 1100ms;">
                         <label class="block mb-2 font-semibold text-gray-700 text-sm ml-1">Values for Y (Dependent)</label>
                         <textarea id="inputY" oninput="updateCounts()"
                             class="w-full h-24 bg-gray-50 border-2 border-gray-200 rounded-xl p-3 text-base focus:outline-none focus:border-sky-500 focus:bg-white focus:ring-4 focus:ring-sky-500/10 transition-all duration-300 resize-y placeholder-gray-300"
                             placeholder="6&#10;4&#10;3&#10;5"></textarea>
                     </div>
-                    <div class="relative group">
+                    <div class="relative group animate-scale-up" style="animation-delay: 1200ms;">
                         <label id="labelX1" class="block mb-2 font-semibold text-gray-700 text-sm ml-1">Values for X</label>
                         <textarea id="inputX1" oninput="updateCounts()"
                             class="w-full h-24 bg-gray-50 border-2 border-gray-200 rounded-xl p-3 text-base focus:outline-none focus:border-sky-500 focus:bg-white focus:ring-4 focus:ring-sky-500/10 transition-all duration-300 resize-y placeholder-gray-300"
                             placeholder="1&#10;2&#10;3&#10;4"></textarea>
                     </div>
-                    <div class="relative group hidden animate-slide-up" id="containerX2">
+                    <div class="relative group hidden animate-slide-up" id="containerX2" style="animation-delay: 1300ms;">
                         <label class="block mb-2 font-semibold text-gray-700 text-sm ml-1">Values for X₂</label>
                         <textarea id="inputX2" oninput="updateCounts()"
                             class="w-full h-24 bg-gray-50 border-2 border-gray-200 rounded-xl p-3 text-base focus:outline-none focus:border-sky-500 focus:bg-white focus:ring-4 focus:ring-sky-500/10 transition-all duration-300 resize-y placeholder-gray-300"
                             placeholder="2&#10;5&#10;2&#10;6"></textarea>
                     </div>
                 </div>
-                <div id="countsDisplay" class="mt-6 bg-amber-50 border border-amber-200 text-amber-900 text-sm font-semibold p-3 rounded-xl text-center transition-all duration-300 hover:bg-amber-100">
+                <div id="countsDisplay" class="mt-6 bg-amber-50 border border-amber-200 text-amber-900 text-sm font-semibold p-3 rounded-xl text-center transition-all duration-300 hover:bg-amber-100 animate-pulse-subtle" style="animation-delay: 1400ms;">
                     n(Y) = 0 , n(X) = 0
                 </div>
-                <div id="errorBox" class="hidden mt-4 bg-red-50 border border-red-200 text-red-700 text-sm font-medium p-4 rounded-xl text-center animate-pop shadow-sm"></div>
+                <div id="errorBox" class="hidden mt-4 bg-red-50 border border-red-200 text-red-700 text-sm font-medium p-4 rounded-xl text-center animate-pop shadow-sm" style="animation-delay: 1500ms;"></div>
                 <button onclick="calculate()"
-                    class="w-full mt-6 py-4 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white font-bold rounded-xl shadow-lg shadow-sky-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:scale-[0.98]">
+                    class="w-full mt-6 py-4 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white font-bold rounded-xl shadow-lg shadow-sky-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:scale-[0.98] animate-bounce-in" style="animation-delay: 1600ms;">
                     CALCULATE STATS
                 </button>
             </div>
             <!-- RESULTS SECTION -->
-            <div id="resultsCard" class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 animate-slide-up mb-24 transition-all duration-500 hover:shadow-xl">
-                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-3 mb-6 flex items-center gap-2">
+            <div id="resultsCard" class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 animate-slide-up mb-24 transition-all duration-500 hover:shadow-xl" style="animation-delay: 1700ms;">
+                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-3 mb-6 flex items-center gap-2 animate-slide-in-right" style="animation-delay: 1800ms;">
                     <span>3. Results</span>
                     <span id="calculatedBadge" class="hidden text-xs bg-sky-100 text-sky-600 px-2 py-0.5 rounded-full animate-pop">Calculated</span>
                 </h2>
-                <div id="placeholderResults" class="text-center py-12 px-4 rounded-xl border-2 border-dashed border-gray-100 bg-gray-50/50">
+                <div id="placeholderResults" class="text-center py-12 px-4 rounded-xl border-2 border-dashed border-gray-100 bg-gray-50/50 animate-pulse-subtle" style="animation-delay: 1900ms;">
                     <p class="text-gray-400 italic animate-pulse-subtle">
                         Results will appear here after calculation.
                     </p>
@@ -165,20 +198,20 @@
                     <!-- Dynamic Content Injected Here -->
                 </div>
                 <!-- HYPOTHESIS TESTING INPUTS (Hidden until calculated) -->
-                <div id="hypothesisSection" class="hidden mt-8 bg-orange-50/80 rounded-2xl p-6 border border-orange-100 no-print animate-slide-up hover:shadow-lg transition-all duration-300 group">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                <div id="hypothesisSection" class="hidden mt-8 bg-orange-50/80 rounded-2xl p-6 border border-orange-100 no-print animate-slide-up hover:shadow-lg transition-all duration-300 group" style="animation-delay: 2000ms;">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 animate-fade-in" style="animation-delay: 2100ms;">
                         <h4 class="text-sm font-bold text-orange-900 flex items-center gap-2">
                             <span class="text-lg">🔍</span> Hypothesis Testing Check
                         </h4>
                         <span class="text-[10px] bg-orange-100 text-orange-800 px-2 py-1 rounded-full font-medium">Optional</span>
                     </div>
                    
-                    <p class="text-xs text-orange-800 mb-5 leading-relaxed">
+                    <p class="text-xs text-orange-800 mb-5 leading-relaxed animate-fade-in" style="animation-delay: 2200ms;">
                         Enter the <strong>Critical Values</strong> from your statistical table (e.g., t-table or F-table) to automatically check significance based on your question's values.
                     </p>
                    
                     <div class="flex flex-col sm:flex-row gap-5">
-                        <div class="flex-1 space-y-2">
+                        <div class="flex-1 space-y-2 animate-slide-in-left" style="animation-delay: 2300ms;">
                             <label class="block text-xs font-bold text-orange-800 uppercase tracking-wide">
                                 Critical t-value
                             </label>
@@ -186,7 +219,7 @@
                                 class="w-full p-3 border border-orange-200 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 bg-white transition-all duration-300 font-medium text-gray-800 shadow-sm">
                             <div id="tCheckText" class="text-[10px] text-orange-700 font-medium pl-1 h-4"></div>
                         </div>
-                        <div class="flex-1 space-y-2">
+                        <div class="flex-1 space-y-2 animate-slide-in-right" style="animation-delay: 2400ms;">
                             <label class="block text-xs font-bold text-orange-800 uppercase tracking-wide">
                                 Critical F-value
                             </label>
@@ -196,29 +229,29 @@
                         </div>
                     </div>
                 </div>
-                <button id="btnPdf" onclick="window.print()" class="hidden w-full mt-6 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/30 items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.01] hover:shadow-xl active:scale-[0.98] no-print group">
+                <button id="btnPdf" onclick="window.print()" class="hidden w-full mt-6 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/30 items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.01] hover:shadow-xl active:scale-[0.98] no-print group animate-bounce-in" style="animation-delay: 2500ms;">
                     <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">📄</span>
                     <span>Export Solution as PDF</span>
                 </button>
             </div>
            
-            <div class="h-8 print-only hidden text-center text-sm text-gray-500 mt-8 border-t pt-4">
+            <div class="h-8 print-only hidden text-center text-sm text-gray-500 mt-8 border-t pt-4 animate-fade-in" style="animation-delay: 2600ms;">
                 Computed by Regression Answer Checker | Powered by Mr Zach
             </div>
         </div>
         <!-- FOOTER -->
-        <div class="fixed bottom-0 left-0 w-full h-[90px] bg-white/85 backdrop-blur-md border-t border-gray-200 flex items-center justify-center px-4 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] no-print">
+        <div class="fixed bottom-0 left-0 w-full h-[90px] bg-white/85 backdrop-blur-md border-t border-gray-200 flex items-center justify-center px-4 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] no-print animate-slide-up" style="animation-delay: 2700ms;">
             <!-- Brand -->
-            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-xs text-gray-800 opacity-25 tracking-[1.5px] whitespace-nowrap pointer-events-none select-none">
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-xs text-gray-800 opacity-25 tracking-[1.5px] whitespace-nowrap pointer-events-none select-none animate-fade-in" style="animation-delay: 2800ms;">
                 POWER BY MR ZACH
             </div>
             <!-- Contact -->
-            <div class="absolute right-5 top-1/2 -translate-y-1/2 flex items-center gap-3">
+            <div class="absolute right-5 top-1/2 -translate-y-1/2 flex items-center gap-3 animate-slide-in-right" style="animation-delay: 2900ms;">
                 <span class="text-[0.7rem] text-gray-500 opacity-80 text-right italic leading-tight max-w-[160px] hidden sm:block">
                     Contact owner for<br/>feedback & suggestions
                 </span>
                 <a href="https://wa.me/923294557142" target="_blank" rel="noreferrer" aria-label="WhatsApp"
-                    class="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg shadow-[#25D366]/35 active:scale-95 transition-transform hover:scale-105">
+                    class="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg shadow-[#25D366]/35 active:scale-95 transition-transform hover:scale-105 animate-rotate-in" style="animation-delay: 3000ms;">
                     <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                     </svg>
@@ -580,7 +613,7 @@
             `;
             // 4. Coefficients
             let rows = r.coefficients.map((c, i) => `
-                <tr class="hover:bg-sky-50/50 transition-colors duration-200">
+                <tr class="hover:bg-sky-50/50 transition-colors duration-200 animate-fade-in" style="animation-delay: ${1200 + i * 100}ms;">
                     <td class="py-4 px-4 text-left font-bold text-gray-800">${c.name}</td>
                     <td class="py-4 px-4">${c.value.toFixed(4)}</td>
                     <td class="py-4 px-4 text-gray-500">${c.se.toFixed(4)}</td>
@@ -675,3 +708,4 @@
 <script type="module" src="/index.tsx"></script>
 </body>
 </html>
+```
