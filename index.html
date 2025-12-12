@@ -57,9 +57,9 @@
             .card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
             input, textarea { border: none; padding: 0; resize: none; }
         }
-        
+       
         html { scroll-behavior: smooth; }
-        
+       
         /* Custom scrollbar for textareas */
         textarea::-webkit-scrollbar { width: 8px; }
         textarea::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
@@ -69,10 +69,9 @@
 <link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased overflow-x-hidden pb-32">
-
     <div class="min-h-screen flex flex-col items-center pt-6 px-4">
         <div class="w-full max-w-2xl space-y-6">
-            
+           
             <!-- HEADER -->
             <div class="text-center mb-6 mt-4 animate-fade-in-up no-print">
                 <h1 class="text-2xl md:text-3xl font-bold text-sky-500 mb-2 tracking-tight">
@@ -81,7 +80,7 @@
                 <p class="text-gray-500 text-sm md:text-base mb-4 font-medium">
                     Verify your manual calculations
                 </p>
-                
+               
                 <!-- Usage Counter Badge -->
                 <div class="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-gray-200 transition-transform hover:scale-105 duration-300">
                     <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Global Calculations</span>
@@ -93,7 +92,6 @@
                     </span>
                 </div>
             </div>
-
             <!-- MODEL SELECTOR -->
             <div class="bg-white rounded-2xl p-5 shadow-lg border border-gray-200 animate-fade-in-up no-print hover:shadow-xl transition-shadow duration-300">
                 <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-2 mb-4">
@@ -114,17 +112,15 @@
                     </label>
                 </div>
             </div>
-
             <!-- DATA INPUT -->
             <div class="bg-white rounded-2xl p-5 shadow-lg border border-gray-200 animate-fade-in-up no-print hover:shadow-xl transition-shadow duration-300" style="animation-delay: 100ms;">
                 <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-2 mb-4">
                     2. Enter Data
                 </h2>
-                
+               
                 <div class="bg-blue-50 border-l-4 border-sky-500 p-3 rounded-r-lg mb-6 text-sm text-gray-700 shadow-sm">
                     <strong>Tip:</strong> Enter numbers vertically (like a column) or separated by spaces/commas.
                 </div>
-
                 <div class="space-y-6">
                     <div class="relative group">
                         <label class="block mb-2 font-semibold text-gray-700 text-sm ml-1">Values for Y (Dependent)</label>
@@ -132,14 +128,12 @@
                             class="w-full h-24 bg-gray-50 border-2 border-gray-200 rounded-xl p-3 text-base focus:outline-none focus:border-sky-500 focus:bg-white focus:ring-4 focus:ring-sky-500/10 transition-all duration-300 resize-y placeholder-gray-300"
                             placeholder="6&#10;4&#10;3&#10;5"></textarea>
                     </div>
-
                     <div class="relative group">
                         <label id="labelX1" class="block mb-2 font-semibold text-gray-700 text-sm ml-1">Values for X</label>
                         <textarea id="inputX1" oninput="updateCounts()"
                             class="w-full h-24 bg-gray-50 border-2 border-gray-200 rounded-xl p-3 text-base focus:outline-none focus:border-sky-500 focus:bg-white focus:ring-4 focus:ring-sky-500/10 transition-all duration-300 resize-y placeholder-gray-300"
                             placeholder="1&#10;2&#10;3&#10;4"></textarea>
                     </div>
-
                     <div class="relative group hidden animate-slide-up" id="containerX2">
                         <label class="block mb-2 font-semibold text-gray-700 text-sm ml-1">Values for X₂</label>
                         <textarea id="inputX2" oninput="updateCounts()"
@@ -147,36 +141,29 @@
                             placeholder="2&#10;5&#10;2&#10;6"></textarea>
                     </div>
                 </div>
-
                 <div id="countsDisplay" class="mt-6 bg-amber-50 border border-amber-200 text-amber-900 text-sm font-semibold p-3 rounded-xl text-center transition-all duration-300 hover:bg-amber-100">
                     n(Y) = 0 , n(X) = 0
                 </div>
-
                 <div id="errorBox" class="hidden mt-4 bg-red-50 border border-red-200 text-red-700 text-sm font-medium p-4 rounded-xl text-center animate-pop shadow-sm"></div>
-
                 <button onclick="calculate()"
                     class="w-full mt-6 py-4 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white font-bold rounded-xl shadow-lg shadow-sky-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:scale-[0.98]">
                     CALCULATE STATS
                 </button>
             </div>
-
             <!-- RESULTS SECTION -->
             <div id="resultsCard" class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 animate-slide-up mb-24 transition-all duration-500 hover:shadow-xl">
                 <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-3 mb-6 flex items-center gap-2">
                     <span>3. Results</span>
                     <span id="calculatedBadge" class="hidden text-xs bg-sky-100 text-sky-600 px-2 py-0.5 rounded-full animate-pop">Calculated</span>
                 </h2>
-
                 <div id="placeholderResults" class="text-center py-12 px-4 rounded-xl border-2 border-dashed border-gray-100 bg-gray-50/50">
                     <p class="text-gray-400 italic animate-pulse-subtle">
                         Results will appear here after calculation.
                     </p>
                 </div>
-
                 <div id="resultsContent" class="hidden space-y-10">
                     <!-- Dynamic Content Injected Here -->
                 </div>
-
                 <!-- HYPOTHESIS TESTING INPUTS (Hidden until calculated) -->
                 <div id="hypothesisSection" class="hidden mt-8 bg-orange-50/80 rounded-2xl p-6 border border-orange-100 no-print animate-slide-up hover:shadow-lg transition-all duration-300 group">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
@@ -185,11 +172,11 @@
                         </h4>
                         <span class="text-[10px] bg-orange-100 text-orange-800 px-2 py-1 rounded-full font-medium">Optional</span>
                     </div>
-                    
+                   
                     <p class="text-xs text-orange-800 mb-5 leading-relaxed">
                         Enter the <strong>Critical Values</strong> from your statistical table (e.g., t-table or F-table) to automatically check significance based on your question's values.
                     </p>
-                    
+                   
                     <div class="flex flex-col sm:flex-row gap-5">
                         <div class="flex-1 space-y-2">
                             <label class="block text-xs font-bold text-orange-800 uppercase tracking-wide">
@@ -209,25 +196,22 @@
                         </div>
                     </div>
                 </div>
-
                 <button id="btnPdf" onclick="window.print()" class="hidden w-full mt-6 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/30 items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.01] hover:shadow-xl active:scale-[0.98] no-print group">
-                    <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">📄</span> 
+                    <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">📄</span>
                     <span>Export Solution as PDF</span>
                 </button>
             </div>
-            
+           
             <div class="h-8 print-only hidden text-center text-sm text-gray-500 mt-8 border-t pt-4">
                 Computed by Regression Answer Checker | Powered by Mr Zach
             </div>
         </div>
-
         <!-- FOOTER -->
         <div class="fixed bottom-0 left-0 w-full h-[90px] bg-white/85 backdrop-blur-md border-t border-gray-200 flex items-center justify-center px-4 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] no-print">
             <!-- Brand -->
             <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-xs text-gray-800 opacity-25 tracking-[1.5px] whitespace-nowrap pointer-events-none select-none">
                 POWER BY MR ZACH
             </div>
-
             <!-- Contact -->
             <div class="absolute right-5 top-1/2 -translate-y-1/2 flex items-center gap-3">
                 <span class="text-[0.7rem] text-gray-500 opacity-80 text-right italic leading-tight max-w-[160px] hidden sm:block">
@@ -242,64 +226,49 @@
             </div>
         </div>
     </div>
-
     <!-- JAVASCRIPT LOGIC -->
     <script>
         // --- GLOBAL STATE ---
         let currentModel = 'simple';
         let currentResult = null;
-        
+       
         // --- API CONFIG (GLOBAL COUNTER) ---
-        // Using countapi.xyz - a free counter API. 
+        // Using abacus.jasoncameron.dev - a free counter API.
         // Namespace helps keep your counter unique.
-        const COUNT_API_URL = 'https://api.countapi.xyz';
-        const COUNT_NAMESPACE = 'regression-answer-checker-global-v1'; 
+        const COUNT_API_URL = 'https://abacus.jasoncameron.dev';
+        const COUNT_NAMESPACE = 'regression-answer-checker-global-v1';
         const COUNT_KEY = 'visits';
-
         // --- INIT ---
         window.onload = function() {
             // Initialize global counter on load (fetch only)
             updateGlobalCount(false);
         };
-
         // --- GLOBAL COUNTER FUNCTION ---
         async function updateGlobalCount(increment = false) {
             const badge = document.getElementById('usage-count-display');
-            const localKey = 'regression_usage_count';
-            let val = localStorage.getItem(localKey) || '0';
-
             try {
                 // Determine API endpoint: hit (increment) or get (view)
                 const action = increment ? 'hit' : 'get';
                 const response = await fetch(`${COUNT_API_URL}/${action}/${COUNT_NAMESPACE}/${COUNT_KEY}`);
                 const data = await response.json();
-                
-                if (data && data.value) {
+               
+                if (data && data.value !== undefined) {
                     badge.textContent = data.value;
-                    // Sync local storage just as a backup reference
-                    localStorage.setItem(localKey, data.value);
                 } else {
                     throw new Error("Invalid API response");
                 }
             } catch (error) {
-                // FALLBACK: If API is down or blocked by adblock, use local storage
-                console.warn("Global counter unavailable (likely AdBlock or downtime). Using local fallback.");
-                
-                if (increment) {
-                    val = parseInt(val) + 1;
-                    localStorage.setItem(localKey, val);
-                }
-                badge.textContent = val;
+                // If API fails, show N/A
+                console.warn("Global counter unavailable. Error:", error);
+                badge.textContent = 'N/A';
             }
-
-            // Animate badge
-            if (increment) {
+            // Animate badge if increment successful (but since catch shows N/A, no animate)
+            if (increment && badge.textContent !== 'N/A') {
                 badge.classList.remove('animate-pop');
                 void badge.offsetWidth; // Trigger reflow
                 badge.classList.add('animate-pop');
             }
         }
-
         // --- UTILS ---
         function parseInput(val) {
             if (!val) return [];
@@ -308,12 +277,10 @@
                       .map(x => Number(x))
                       .filter(x => !isNaN(x));
         }
-
         const sum = (arr) => arr.reduce((a, b) => a + b, 0);
         const mean = (arr) => sum(arr) / arr.length;
         const sumSq = (arr) => arr.reduce((a, b) => a + b * b, 0);
         const sumProd = (arr1, arr2) => arr1.reduce((acc, val, i) => acc + val * arr2[i], 0);
-
         // --- MATH SERVICE ---
         function calculateSimpleRegression(Y, X) {
             const n = Y.length;
@@ -322,19 +289,16 @@
             const sY2 = sumSq(Y);
             const sX2 = sumSq(X);
             const sXY = sumProd(X, Y);
-            
+           
             const meanY = sY / n;
             const meanX = sX / n;
-
             // Deviations
             const Sxx = sX2 - (sX*sX)/n;
             const Syy = sY2 - (sY*sY)/n;
             const Sxy = sXY - (sX*sY)/n;
-
             // Coefficients
             const b1 = Sxx !== 0 ? Sxy / Sxx : 0;
             const b0 = meanY - b1 * meanX;
-
             // Goodness of Fit
             let ESS = 0, RSS = 0;
             for(let i=0; i<n; i++) {
@@ -343,18 +307,15 @@
                 ESS += Math.pow(y_hat - meanY, 2);
                 RSS += Math.pow(resid, 2);
             }
-
-            const TSS = Syy; 
+            const TSS = Syy;
             const R2 = TSS !== 0 ? ESS / TSS : 0;
             const AdjR2 = (n > 2) ? 1 - ( (RSS/(n-2)) / (TSS/(n-1)) ) : 0;
-
             const sigma2 = (n > 2) ? RSS / (n - 2) : 0;
             const se_b1 = (Sxx > 0 && sigma2 >= 0) ? Math.sqrt(sigma2 / Sxx) : 0;
             const se_b0 = (Sxx > 0 && sigma2 >= 0) ? Math.sqrt(sigma2 * (1/n + (meanX*meanX)/Sxx)) : 0;
             const t_b0 = se_b0 !== 0 ? b0 / se_b0 : 0;
             const t_b1 = se_b1 !== 0 ? b1 / se_b1 : 0;
             const F = (RSS > 0 && n > 2) ? (ESS/1) / (RSS/(n-2)) : 0;
-
             return {
                 n, meanY, meanX1: meanX,
                 sumY: sY, sumX1: sX, sumY2: sY2, sumX1_2: sX2, sumX1Y: sXY,
@@ -367,7 +328,6 @@
                 ]
             };
         }
-
         // Matrix helpers
         const matMul = (A, B) => {
             let m = A.length, n = A[0].length, p = B[0].length;
@@ -390,7 +350,7 @@
             let det = m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2]) -
                       m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) +
                       m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
-            if (Math.abs(det) < 1e-12) return null; 
+            if (Math.abs(det) < 1e-12) return null;
             let invdet = 1 / det;
             let minv = Array(3).fill(0).map(()=>Array(3).fill(0));
             minv[0][0] = (m[1][1] * m[2][2] - m[2][1] * m[1][2]) * invdet;
@@ -404,33 +364,26 @@
             minv[2][2] = (m[0][0] * m[1][1] - m[1][0] * m[0][1]) * invdet;
             return minv;
         };
-
         function calculateMultipleRegression(Y_arr, X1_arr, X2_arr) {
             const n = Y_arr.length;
-            const k = 3; 
-
+            const k = 3;
             let X = [];
             let Y = [];
             for(let i=0; i<n; i++) {
                 X.push([1, X1_arr[i], X2_arr[i]]);
                 Y.push([Y_arr[i]]);
             }
-
             let Xt = transpose(X);
-            let XtX = matMul(Xt, X); 
+            let XtX = matMul(Xt, X);
             let XtX_inv = invert3x3(XtX);
-
             if (!XtX_inv) throw new Error("Calculation Error: Matrix Singular.");
-
             let XtY = matMul(Xt, Y);
             let Beta = matMul(XtX_inv, XtY);
-
             let b0 = Beta[0][0], b1 = Beta[1][0], b2 = Beta[2][0];
             let sY = sum(Y_arr), sX1 = sum(X1_arr), sX2 = sum(X2_arr);
             let sY2 = sumSq(Y_arr), sX1sq = sumSq(X1_arr), sX2sq = sumSq(X2_arr);
             let sX1Y = sumProd(X1_arr, Y_arr), sX2Y = sumProd(X2_arr, Y_arr), sX1X2 = sumProd(X1_arr, X2_arr);
             let meanY = sY/n, meanX1 = sX1/n, meanX2 = sX2/n;
-
             let ESS = 0, RSS = 0;
             for(let i=0; i<n; i++) {
                 let y_hat = b0 + b1*X1_arr[i] + b2*X2_arr[i];
@@ -438,17 +391,14 @@
                 ESS += Math.pow(y_hat - meanY, 2);
                 RSS += Math.pow(resid, 2);
             }
-
             let TSS = sumSq(Y_arr.map(y => y - meanY));
             let R2 = TSS !== 0 ? ESS / TSS : 0;
             let AdjR2 = (n > k) ? 1 - ( (RSS/(n-k)) / (TSS/(n-1)) ) : 0;
             let sigma2 = (n > k) ? RSS / (n-k) : 0;
             let F = (RSS > 0 && n > k) ? (ESS/(k-1)) / (RSS/(n-k)) : 0;
-
             let SE_b0 = (sigma2 >= 0) ? Math.sqrt(sigma2 * XtX_inv[0][0]) : 0;
             let SE_b1 = (sigma2 >= 0) ? Math.sqrt(sigma2 * XtX_inv[1][1]) : 0;
             let SE_b2 = (sigma2 >= 0) ? Math.sqrt(sigma2 * XtX_inv[2][2]) : 0;
-
             return {
                 n, meanY, meanX1, meanX2,
                 sumY: sY, sumX1: sX1, sumX2: sX2,
@@ -463,12 +413,11 @@
                 ]
             };
         }
-
         // --- UI HANDLERS ---
         function handleModelChange(model) {
             currentModel = model;
             currentResult = null;
-            
+           
             // Toggle Styling
             const simpleLabel = document.getElementById('label-simple');
             const simpleText = document.getElementById('text-simple');
@@ -476,31 +425,26 @@
             const multipleText = document.getElementById('text-multiple');
             const x2Container = document.getElementById('containerX2');
             const x1Label = document.getElementById('labelX1');
-
             if (model === 'simple') {
                 simpleLabel.classList.add('bg-sky-50', 'border-sky-200', 'shadow-sm');
                 simpleLabel.classList.remove('bg-transparent', 'border-transparent', 'hover:bg-gray-50');
                 simpleText.classList.replace('text-gray-600', 'text-sky-700');
-
                 multipleLabel.classList.remove('bg-sky-50', 'border-sky-200', 'shadow-sm');
                 multipleLabel.classList.add('bg-transparent', 'border-transparent', 'hover:bg-gray-50');
                 multipleText.classList.replace('text-sky-700', 'text-gray-600');
-                
+               
                 x2Container.classList.add('hidden');
                 x1Label.textContent = "Values for X";
             } else {
                 multipleLabel.classList.add('bg-sky-50', 'border-sky-200', 'shadow-sm');
                 multipleLabel.classList.remove('bg-transparent', 'border-transparent', 'hover:bg-gray-50');
                 multipleText.classList.replace('text-gray-600', 'text-sky-700');
-
                 simpleLabel.classList.remove('bg-sky-50', 'border-sky-200', 'shadow-sm');
                 simpleLabel.classList.add('bg-transparent', 'border-transparent', 'hover:bg-gray-50');
                 simpleText.classList.replace('text-sky-700', 'text-gray-600');
-
                 x2Container.classList.remove('hidden');
                 x1Label.textContent = "Values for X₁";
             }
-
             // Reset UI
             document.getElementById('resultsContent').classList.add('hidden');
             document.getElementById('placeholderResults').classList.remove('hidden');
@@ -508,10 +452,9 @@
             document.getElementById('btnPdf').classList.remove('flex');
             document.getElementById('btnPdf').classList.add('hidden');
             document.getElementById('calculatedBadge').classList.add('hidden');
-            
+           
             updateCounts();
         }
-
         function updateCounts() {
             const Y = parseInput(document.getElementById('inputY').value);
             const X1 = parseInput(document.getElementById('inputX1').value);
@@ -519,13 +462,11 @@
             document.getElementById('countsDisplay').innerHTML = `n(Y) = ${Y.length} , n(${xText}) = ${X1.length}`;
             document.getElementById('errorBox').classList.add('hidden');
         }
-
         function calculate() {
             const Y = parseInput(document.getElementById('inputY').value);
             const X1 = parseInput(document.getElementById('inputX1').value);
             const X2 = parseInput(document.getElementById('inputX2').value);
             const errBox = document.getElementById('errorBox');
-
             // Validate
             if (Y.length === 0 || X1.length === 0) {
                 errBox.textContent = "Error: Input fields cannot be empty.";
@@ -542,32 +483,25 @@
                 errBox.classList.remove('hidden');
                 return;
             }
-
             errBox.classList.add('hidden');
-
             try {
                 if (currentModel === 'simple') {
                     currentResult = calculateSimpleRegression(Y, X1);
                 } else {
                     currentResult = calculateMultipleRegression(Y, X1, X2);
                 }
-
-                // Increment Global Usage Counter
+                // Increment Counters
                 updateGlobalCount(true);
-
                 renderResults();
-
                 // Scroll
                 setTimeout(() => {
                     document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 100);
-
             } catch (e) {
                 errBox.textContent = e.message || "Calculation Error";
                 errBox.classList.remove('hidden');
             }
         }
-
         function statItemHtml(label, value, delay) {
             return `
             <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 hover:bg-white hover:border-sky-100 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] animate-zoom-in" style="animation-delay: ${delay}ms">
@@ -575,11 +509,10 @@
                 <span class="text-lg font-bold text-gray-800">${typeof value === 'number' ? value.toFixed(4) : value}</span>
             </div>`;
         }
-
         function renderResults() {
             const r = currentResult;
             const content = document.getElementById('resultsContent');
-            
+           
             // 1. Data Summary
             let html = `
                 <div class="animate-slide-up" style="animation-delay: 100ms">
@@ -602,7 +535,6 @@
                     </div>
                 </div>
             `;
-
             // 2. Deviations (Simple)
             if (r.Sxx !== undefined) {
                 html += `
@@ -617,7 +549,6 @@
                     </div>
                 </div>`;
             }
-
             // 3. Model
             html += `
                 <div class="animate-slide-up" style="animation-delay: 300ms">
@@ -628,7 +559,6 @@
                         <div class="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
                         ${r.formula}
                     </div>
-
                     <h4 class="flex items-center justify-between text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">
                         <div class="flex items-center gap-2">
                             <span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span> Analysis of Variance
@@ -648,7 +578,6 @@
                     </div>
                 </div>
             `;
-
             // 4. Coefficients
             let rows = r.coefficients.map((c, i) => `
                 <tr class="hover:bg-sky-50/50 transition-colors duration-200">
@@ -659,7 +588,6 @@
                     <td class="py-4 px-4 text-center t-badge-cell"></td>
                 </tr>
             `).join('');
-
             html += `
                 <div class="animate-slide-up" style="animation-delay: 400ms">
                     <h4 class="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">
@@ -683,9 +611,8 @@
                     </div>
                 </div>
             `;
-
             content.innerHTML = html;
-            
+           
             // Show Elements
             document.getElementById('placeholderResults').classList.add('hidden');
             content.classList.remove('hidden');
@@ -693,29 +620,24 @@
             document.getElementById('btnPdf').classList.remove('hidden');
             document.getElementById('btnPdf').classList.add('flex');
             document.getElementById('calculatedBadge').classList.remove('hidden');
-
             updateSignificance();
         }
-
         function updateSignificance() {
             if (!currentResult) return;
-
             const tCrit = parseFloat(document.getElementById('inputTCrit').value);
             const fCrit = parseFloat(document.getElementById('inputFCrit').value);
-
             // Update F
             const fBadge = document.getElementById('fStatBadge');
             const fContainer = document.getElementById('fStatContainer');
             const fCheckText = document.getElementById('fCheckText');
-
             if (!isNaN(fCrit)) {
                 const isSig = currentResult.F > fCrit;
                 fCheckText.textContent = `Checking if F > ${fCrit}`;
                 fCheckText.classList.add('animate-pop');
-                
+               
                 fBadge.className = `inline-flex items-center px-2.5 py-1 rounded-md text-[10px] md:text-xs font-bold uppercase tracking-wider shadow-sm animate-pop ${isSig ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' : 'bg-rose-100 text-rose-700 border border-rose-200'}`;
                 fBadge.textContent = isSig ? 'Reject H₀' : 'Fail to Reject H₀';
-                
+               
                 fContainer.className = `rounded-xl transition-all duration-300 ${isSig ? 'ring-2 ring-emerald-400 bg-emerald-50/50' : 'ring-2 ring-rose-300 bg-rose-50/50'}`;
             } else {
                 fBadge.textContent = '';
@@ -723,7 +645,6 @@
                 fContainer.className = 'rounded-xl transition-all duration-300';
                 fCheckText.textContent = '';
             }
-
             // Update t
             const tCheckText = document.getElementById('tCheckText');
             if (!isNaN(tCrit)) {
@@ -734,15 +655,12 @@
                 tCheckText.textContent = '';
                 document.getElementById('thDecision').textContent = 'H₀ Decision';
             }
-
             // Loop rows
             const tCells = document.querySelectorAll('.t-val-cell');
             const tBadges = document.querySelectorAll('.t-badge-cell');
-
             tCells.forEach((cell, idx) => {
                 const tVal = parseFloat(cell.getAttribute('data-t'));
                 const badgeCell = tBadges[idx];
-
                 if (!isNaN(tCrit)) {
                     const isSig = Math.abs(tVal) > tCrit;
                     cell.className = `py-4 px-4 font-bold t-val-cell ${isSig ? 'text-emerald-600' : 'text-rose-500'}`;
