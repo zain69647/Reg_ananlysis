@@ -717,7 +717,7 @@
                         } else {
                             table.classList.add('scroll-start');
                         }
-                        if (scrollLeft + clientWidth < scrollWidth) {
+                        if (scrollLeft + clientWidth < scrollWidth - 1) {
                             table.classList.remove('scroll-end');
                         } else {
                             table.classList.add('scroll-end');
@@ -756,26 +756,4 @@
                 tCheckText.classList.add('animate-pop');
                 document.getElementById('thDecision').innerHTML = `H₀ Decision<br/><span class="text-[10px] font-normal">(vs ${tCrit})</span>`;
             } else {
-                tCheckText.textContent = '';
-                document.getElementById('thDecision').textContent = 'H₀ Decision';
-            }
-            // Loop rows
-            const tCells = document.querySelectorAll('.t-val-cell');
-            const tBadges = document.querySelectorAll('.t-badge-cell');
-            tCells.forEach((cell, idx) => {
-                const tVal = parseFloat(cell.getAttribute('data-t'));
-                const badgeCell = tBadges[idx];
-                if (!isNaN(tCrit)) {
-                    const isSig = Math.abs(tVal) > tCrit;
-                    cell.className = `py-4 px-4 font-bold t-val-cell ${isSig ? 'text-emerald-600' : 'text-rose-500'}`;
-                    badgeCell.innerHTML = `<span class="inline-flex items-center px-2.5 py-1 rounded-md text-[10px] md:text-xs font-bold uppercase tracking-wider shadow-sm animate-pop ${isSig ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' : 'bg-rose-100 text-rose-700 border border-rose-200'}">${isSig ? 'Reject H₀' : 'Fail to Reject H₀'}</span>`;
-                } else {
-                    cell.className = `py-4 px-4 font-bold t-val-cell text-gray-800`;
-                    badgeCell.innerHTML = '';
-                }
-            });
-        }
-    </script>
-<script type="module" src="/index.tsx"></script>
-</body>
-</html>
+                t
