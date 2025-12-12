@@ -21,12 +21,6 @@
                         'slide-up': 'slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                         'pop': 'pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
                         'pulse-subtle': 'pulseSubtle 2s infinite',
-                        'bounce-in': 'bounceIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                        'fade-in': 'fadeIn 0.5s ease-in-out forwards',
-                        'slide-in-left': 'slideInLeft 0.5s ease-in-out forwards',
-                        'slide-in-right': 'slideInRight 0.5s ease-in-out forwards',
-                        'rotate-in': 'rotateIn 0.5s ease-in-out forwards',
-                        'scale-up': 'scaleUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
                     },
                     keyframes: {
                         fadeInUp: {
@@ -48,32 +42,6 @@
                         pulseSubtle: {
                             '0%, 100%': { opacity: '1' },
                             '50%': { opacity: '0.85' },
-                        },
-                        bounceIn: {
-                            '0%': { opacity: '0', transform: 'scale(0.3)' },
-                            '50%': { opacity: '1', transform: 'scale(1.05)' },
-                            '70%': { transform: 'scale(0.9)' },
-                            '100%': { transform: 'scale(1)' },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideInLeft: {
-                            '0%': { opacity: '0', transform: 'translateX(-20px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
-                        },
-                        slideInRight: {
-                            '0%': { opacity: '0', transform: 'translateX(20px)' },
-                            '100%': { opacity: '1', transform: 'translateX(0)' },
-                        },
-                        rotateIn: {
-                            '0%': { opacity: '0', transform: 'rotate(-90deg)' },
-                            '100%': { opacity: '1', transform: 'rotate(0deg)' },
-                        },
-                        scaleUp: {
-                            '0%': { transform: 'scale(0.95)' },
-                            '100%': { transform: 'scale(1)' },
                         }
                     }
                 }
@@ -89,80 +57,35 @@
             .card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
             input, textarea { border: none; padding: 0; resize: none; }
         }
-       
+        
         html { scroll-behavior: smooth; }
-       
+        
         /* Custom scrollbar for textareas */
         textarea::-webkit-scrollbar { width: 8px; }
         textarea::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
         textarea::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
         textarea::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
-
-        /* Scroll indicators for table */
-        .scrollable-table {
-            position: relative;
-            overflow-x: auto;
-        }
-
-        .scrollable-table::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: -10px;
-            width: 10px;
-            background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.05));
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .scrollable-table::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: -10px;
-            width: 10px;
-            background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.05));
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .scrollable-table.scroll-start::before {
-            opacity: 1;
-        }
-
-        .scrollable-table.scroll-end::after {
-            opacity: 1;
-        }
-
-        @media (min-width: 640px) {
-            .scrollable-table::before, .scrollable-table::after {
-                display: none;
-            }
-        }
     </style>
 <link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-gray-100 text-gray-800 antialiased overflow-x-hidden pb-32">
+
     <div class="min-h-screen flex flex-col items-center pt-6 px-4">
         <div class="w-full max-w-2xl space-y-6">
-           
+            
             <!-- HEADER -->
             <div class="text-center mb-6 mt-4 animate-fade-in-up no-print">
-                <h1 class="text-2xl md:text-3xl font-bold text-sky-500 mb-2 tracking-tight animate-bounce-in">
+                <h1 class="text-2xl md:text-3xl font-bold text-sky-500 mb-2 tracking-tight">
                     Regression Answer Checker
                 </h1>
-                <p class="text-gray-500 text-sm md:text-base mb-4 font-medium animate-fade-in" style="animation-delay: 200ms;">
+                <p class="text-gray-500 text-sm md:text-base mb-4 font-medium">
                     Verify your manual calculations
                 </p>
-               
+                
                 <!-- Usage Counter Badge -->
-                <div class="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-gray-200 transition-transform hover:scale-105 duration-300 animate-slide-in-left" style="animation-delay: 400ms;">
+                <div class="inline-flex items-center gap-2 bg-white px-4 py-1.5 rounded-full shadow-sm border border-gray-200 transition-transform hover:scale-105 duration-300">
                     <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Global Calculations</span>
-                    <span id="usage-count-display" class="bg-sky-100 text-sky-700 px-2 py-0.5 rounded-md text-sm font-bold min-w-[30px] flex justify-center items-center animate-rotate-in">
+                    <span id="usage-count-display" class="bg-sky-100 text-sky-700 px-2 py-0.5 rounded-md text-sm font-bold min-w-[30px] flex justify-center items-center">
                         <svg class="animate-spin h-3 w-3 text-sky-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
@@ -170,19 +93,20 @@
                     </span>
                 </div>
             </div>
+
             <!-- MODEL SELECTOR -->
-            <div class="bg-white rounded-2xl p-5 shadow-lg border border-gray-200 animate-fade-in-up no-print hover:shadow-xl transition-shadow duration-300" style="animation-delay: 600ms;">
-                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-2 mb-4 animate-slide-in-right">
+            <div class="bg-white rounded-2xl p-5 shadow-lg border border-gray-200 animate-fade-in-up no-print hover:shadow-xl transition-shadow duration-300">
+                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-2 mb-4">
                     1. Choose Model
                 </h2>
                 <div class="flex flex-col gap-2">
-                    <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-xl border transition-all duration-300 bg-sky-50 border-sky-200 shadow-sm animate-pop" id="label-simple" style="animation-delay: 700ms;">
+                    <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-xl border transition-all duration-300 bg-sky-50 border-sky-200 shadow-sm" id="label-simple">
                         <input type="radio" name="model" value="simple" checked onchange="handleModelChange('simple')" class="w-5 h-5 accent-sky-500 transition-transform group-active:scale-90">
                         <span class="font-medium transition-colors text-sky-700 group-hover:text-sky-600" id="text-simple">
                             Simple Regression (Y on X)
                         </span>
                     </label>
-                    <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-xl border transition-all duration-300 bg-transparent border-transparent hover:bg-gray-50 animate-pop" id="label-multiple" style="animation-delay: 800ms;">
+                    <label class="flex items-center gap-3 cursor-pointer group p-3 rounded-xl border transition-all duration-300 bg-transparent border-transparent hover:bg-gray-50" id="label-multiple">
                         <input type="radio" name="model" value="multiple" onchange="handleModelChange('multiple')" class="w-5 h-5 accent-sky-500 transition-transform group-active:scale-90">
                         <span class="font-medium transition-colors text-gray-600 group-hover:text-sky-600" id="text-multiple">
                             Multiple Regression (Y on X₁, X₂)
@@ -190,73 +114,84 @@
                     </label>
                 </div>
             </div>
+
             <!-- DATA INPUT -->
             <div class="bg-white rounded-2xl p-5 shadow-lg border border-gray-200 animate-fade-in-up no-print hover:shadow-xl transition-shadow duration-300" style="animation-delay: 100ms;">
-                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-2 mb-4 animate-slide-in-left" style="animation-delay: 900ms;">
+                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-2 mb-4">
                     2. Enter Data
                 </h2>
-               
-                <div class="bg-blue-50 border-l-4 border-sky-500 p-3 rounded-r-lg mb-6 text-sm text-gray-700 shadow-sm animate-fade-in" style="animation-delay: 1000ms;">
+                
+                <div class="bg-blue-50 border-l-4 border-sky-500 p-3 rounded-r-lg mb-6 text-sm text-gray-700 shadow-sm">
                     <strong>Tip:</strong> Enter numbers vertically (like a column) or separated by spaces/commas.
                 </div>
+
                 <div class="space-y-6">
-                    <div class="relative group animate-scale-up" style="animation-delay: 1100ms;">
+                    <div class="relative group">
                         <label class="block mb-2 font-semibold text-gray-700 text-sm ml-1">Values for Y (Dependent)</label>
                         <textarea id="inputY" oninput="updateCounts()"
                             class="w-full h-24 bg-gray-50 border-2 border-gray-200 rounded-xl p-3 text-base focus:outline-none focus:border-sky-500 focus:bg-white focus:ring-4 focus:ring-sky-500/10 transition-all duration-300 resize-y placeholder-gray-300"
                             placeholder="6&#10;4&#10;3&#10;5"></textarea>
                     </div>
-                    <div class="relative group animate-scale-up" style="animation-delay: 1200ms;">
+
+                    <div class="relative group">
                         <label id="labelX1" class="block mb-2 font-semibold text-gray-700 text-sm ml-1">Values for X</label>
                         <textarea id="inputX1" oninput="updateCounts()"
                             class="w-full h-24 bg-gray-50 border-2 border-gray-200 rounded-xl p-3 text-base focus:outline-none focus:border-sky-500 focus:bg-white focus:ring-4 focus:ring-sky-500/10 transition-all duration-300 resize-y placeholder-gray-300"
                             placeholder="1&#10;2&#10;3&#10;4"></textarea>
                     </div>
-                    <div class="relative group hidden animate-slide-up" id="containerX2" style="animation-delay: 1300ms;">
+
+                    <div class="relative group hidden animate-slide-up" id="containerX2">
                         <label class="block mb-2 font-semibold text-gray-700 text-sm ml-1">Values for X₂</label>
                         <textarea id="inputX2" oninput="updateCounts()"
                             class="w-full h-24 bg-gray-50 border-2 border-gray-200 rounded-xl p-3 text-base focus:outline-none focus:border-sky-500 focus:bg-white focus:ring-4 focus:ring-sky-500/10 transition-all duration-300 resize-y placeholder-gray-300"
                             placeholder="2&#10;5&#10;2&#10;6"></textarea>
                     </div>
                 </div>
-                <div id="countsDisplay" class="mt-6 bg-amber-50 border border-amber-200 text-amber-900 text-sm font-semibold p-3 rounded-xl text-center transition-all duration-300 hover:bg-amber-100 animate-pulse-subtle" style="animation-delay: 1400ms;">
+
+                <div id="countsDisplay" class="mt-6 bg-amber-50 border border-amber-200 text-amber-900 text-sm font-semibold p-3 rounded-xl text-center transition-all duration-300 hover:bg-amber-100">
                     n(Y) = 0 , n(X) = 0
                 </div>
-                <div id="errorBox" class="hidden mt-4 bg-red-50 border border-red-200 text-red-700 text-sm font-medium p-4 rounded-xl text-center animate-pop shadow-sm" style="animation-delay: 1500ms;"></div>
+
+                <div id="errorBox" class="hidden mt-4 bg-red-50 border border-red-200 text-red-700 text-sm font-medium p-4 rounded-xl text-center animate-pop shadow-sm"></div>
+
                 <button onclick="calculate()"
-                    class="w-full mt-6 py-4 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white font-bold rounded-xl shadow-lg shadow-sky-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:scale-[0.98] animate-bounce-in" style="animation-delay: 1600ms;">
+                    class="w-full mt-6 py-4 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 text-white font-bold rounded-xl shadow-lg shadow-sky-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:scale-[0.98]">
                     CALCULATE STATS
                 </button>
             </div>
+
             <!-- RESULTS SECTION -->
-            <div id="resultsCard" class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 animate-slide-up mb-24 transition-all duration-500 hover:shadow-xl" style="animation-delay: 1700ms;">
-                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-3 mb-6 flex items-center gap-2 animate-slide-in-right" style="animation-delay: 1800ms;">
+            <div id="resultsCard" class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 animate-slide-up mb-24 transition-all duration-500 hover:shadow-xl">
+                <h2 class="text-lg font-bold text-gray-900 border-b-2 border-gray-100 pb-3 mb-6 flex items-center gap-2">
                     <span>3. Results</span>
                     <span id="calculatedBadge" class="hidden text-xs bg-sky-100 text-sky-600 px-2 py-0.5 rounded-full animate-pop">Calculated</span>
                 </h2>
-                <div id="placeholderResults" class="text-center py-12 px-4 rounded-xl border-2 border-dashed border-gray-100 bg-gray-50/50 animate-pulse-subtle" style="animation-delay: 1900ms;">
+
+                <div id="placeholderResults" class="text-center py-12 px-4 rounded-xl border-2 border-dashed border-gray-100 bg-gray-50/50">
                     <p class="text-gray-400 italic animate-pulse-subtle">
                         Results will appear here after calculation.
                     </p>
                 </div>
+
                 <div id="resultsContent" class="hidden space-y-10">
                     <!-- Dynamic Content Injected Here -->
                 </div>
+
                 <!-- HYPOTHESIS TESTING INPUTS (Hidden until calculated) -->
-                <div id="hypothesisSection" class="hidden mt-8 bg-orange-50/80 rounded-2xl p-6 border border-orange-100 no-print animate-slide-up hover:shadow-lg transition-all duration-300 group" style="animation-delay: 2000ms;">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 animate-fade-in" style="animation-delay: 2100ms;">
+                <div id="hypothesisSection" class="hidden mt-8 bg-orange-50/80 rounded-2xl p-6 border border-orange-100 no-print animate-slide-up hover:shadow-lg transition-all duration-300 group">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                         <h4 class="text-sm font-bold text-orange-900 flex items-center gap-2">
                             <span class="text-lg">🔍</span> Hypothesis Testing Check
                         </h4>
                         <span class="text-[10px] bg-orange-100 text-orange-800 px-2 py-1 rounded-full font-medium">Optional</span>
                     </div>
-                   
-                    <p class="text-xs text-orange-800 mb-5 leading-relaxed animate-fade-in" style="animation-delay: 2200ms;">
+                    
+                    <p class="text-xs text-orange-800 mb-5 leading-relaxed">
                         Enter the <strong>Critical Values</strong> from your statistical table (e.g., t-table or F-table) to automatically check significance based on your question's values.
                     </p>
-                   
+                    
                     <div class="flex flex-col sm:flex-row gap-5">
-                        <div class="flex-1 space-y-2 animate-slide-in-left" style="animation-delay: 2300ms;">
+                        <div class="flex-1 space-y-2">
                             <label class="block text-xs font-bold text-orange-800 uppercase tracking-wide">
                                 Critical t-value
                             </label>
@@ -264,7 +199,7 @@
                                 class="w-full p-3 border border-orange-200 rounded-xl focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 bg-white transition-all duration-300 font-medium text-gray-800 shadow-sm">
                             <div id="tCheckText" class="text-[10px] text-orange-700 font-medium pl-1 h-4"></div>
                         </div>
-                        <div class="flex-1 space-y-2 animate-slide-in-right" style="animation-delay: 2400ms;">
+                        <div class="flex-1 space-y-2">
                             <label class="block text-xs font-bold text-orange-800 uppercase tracking-wide">
                                 Critical F-value
                             </label>
@@ -274,29 +209,32 @@
                         </div>
                     </div>
                 </div>
-                <button id="btnPdf" onclick="window.print()" class="hidden w-full mt-6 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/30 items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.01] hover:shadow-xl active:scale-[0.98] no-print group animate-bounce-in" style="animation-delay: 2500ms;">
-                    <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">📄</span>
+
+                <button id="btnPdf" onclick="window.print()" class="hidden w-full mt-6 py-4 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl shadow-lg shadow-emerald-500/30 items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.01] hover:shadow-xl active:scale-[0.98] no-print group">
+                    <span class="text-2xl group-hover:rotate-12 transition-transform duration-300">📄</span> 
                     <span>Export Solution as PDF</span>
                 </button>
             </div>
-           
-            <div class="h-8 print-only hidden text-center text-sm text-gray-500 mt-8 border-t pt-4 animate-fade-in" style="animation-delay: 2600ms;">
+            
+            <div class="h-8 print-only hidden text-center text-sm text-gray-500 mt-8 border-t pt-4">
                 Computed by Regression Answer Checker | Powered by Mr Zach
             </div>
         </div>
+
         <!-- FOOTER -->
-        <div class="fixed bottom-0 left-0 w-full h-[90px] bg-white/85 backdrop-blur-md border-t border-gray-200 flex items-center justify-center px-4 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] no-print animate-slide-up" style="animation-delay: 2700ms;">
+        <div class="fixed bottom-0 left-0 w-full h-[90px] bg-white/85 backdrop-blur-md border-t border-gray-200 flex items-center justify-center px-4 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] no-print">
             <!-- Brand -->
-            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-xs text-gray-800 opacity-25 tracking-[1.5px] whitespace-nowrap pointer-events-none select-none animate-fade-in" style="animation-delay: 2800ms;">
+            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-black text-xs text-gray-800 opacity-25 tracking-[1.5px] whitespace-nowrap pointer-events-none select-none">
                 POWER BY MR ZACH
             </div>
+
             <!-- Contact -->
-            <div class="absolute right-5 top-1/2 -translate-y-1/2 flex items-center gap-3 animate-slide-in-right" style="animation-delay: 2900ms;">
+            <div class="absolute right-5 top-1/2 -translate-y-1/2 flex items-center gap-3">
                 <span class="text-[0.7rem] text-gray-500 opacity-80 text-right italic leading-tight max-w-[160px] hidden sm:block">
                     Contact owner for<br/>feedback & suggestions
                 </span>
                 <a href="https://wa.me/923294557142" target="_blank" rel="noreferrer" aria-label="WhatsApp"
-                    class="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg shadow-[#25D366]/35 active:scale-95 transition-transform hover:scale-105 animate-rotate-in" style="animation-delay: 3000ms;">
+                    class="w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg shadow-[#25D366]/35 active:scale-95 transition-transform hover:scale-105">
                     <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
                     </svg>
@@ -304,49 +242,64 @@
             </div>
         </div>
     </div>
+
     <!-- JAVASCRIPT LOGIC -->
     <script>
         // --- GLOBAL STATE ---
         let currentModel = 'simple';
         let currentResult = null;
-       
+        
         // --- API CONFIG (GLOBAL COUNTER) ---
-        // Using abacus.jasoncameron.dev - a free counter API.
+        // Using countapi.xyz - a free counter API. 
         // Namespace helps keep your counter unique.
-        const COUNT_API_URL = 'https://abacus.jasoncameron.dev';
-        const COUNT_NAMESPACE = 'regression-answer-checker-global-v1';
+        const COUNT_API_URL = 'https://api.countapi.xyz';
+        const COUNT_NAMESPACE = 'regression-answer-checker-global-v1'; 
         const COUNT_KEY = 'visits';
+
         // --- INIT ---
         window.onload = function() {
             // Initialize global counter on load (fetch only)
             updateGlobalCount(false);
         };
+
         // --- GLOBAL COUNTER FUNCTION ---
         async function updateGlobalCount(increment = false) {
             const badge = document.getElementById('usage-count-display');
+            const localKey = 'regression_usage_count';
+            let val = localStorage.getItem(localKey) || '0';
+
             try {
                 // Determine API endpoint: hit (increment) or get (view)
                 const action = increment ? 'hit' : 'get';
                 const response = await fetch(`${COUNT_API_URL}/${action}/${COUNT_NAMESPACE}/${COUNT_KEY}`);
                 const data = await response.json();
-               
-                if (data && data.value !== undefined) {
+                
+                if (data && data.value) {
                     badge.textContent = data.value;
+                    // Sync local storage just as a backup reference
+                    localStorage.setItem(localKey, data.value);
                 } else {
                     throw new Error("Invalid API response");
                 }
             } catch (error) {
-                // If API fails, show N/A
-                console.warn("Global counter unavailable. Error:", error);
-                badge.textContent = 'N/A';
+                // FALLBACK: If API is down or blocked by adblock, use local storage
+                console.warn("Global counter unavailable (likely AdBlock or downtime). Using local fallback.");
+                
+                if (increment) {
+                    val = parseInt(val) + 1;
+                    localStorage.setItem(localKey, val);
+                }
+                badge.textContent = val;
             }
-            // Animate badge if increment successful (but since catch shows N/A, no animate)
-            if (increment && badge.textContent !== 'N/A') {
+
+            // Animate badge
+            if (increment) {
                 badge.classList.remove('animate-pop');
                 void badge.offsetWidth; // Trigger reflow
                 badge.classList.add('animate-pop');
             }
         }
+
         // --- UTILS ---
         function parseInput(val) {
             if (!val) return [];
@@ -355,10 +308,12 @@
                       .map(x => Number(x))
                       .filter(x => !isNaN(x));
         }
+
         const sum = (arr) => arr.reduce((a, b) => a + b, 0);
         const mean = (arr) => sum(arr) / arr.length;
         const sumSq = (arr) => arr.reduce((a, b) => a + b * b, 0);
         const sumProd = (arr1, arr2) => arr1.reduce((acc, val, i) => acc + val * arr2[i], 0);
+
         // --- MATH SERVICE ---
         function calculateSimpleRegression(Y, X) {
             const n = Y.length;
@@ -367,16 +322,19 @@
             const sY2 = sumSq(Y);
             const sX2 = sumSq(X);
             const sXY = sumProd(X, Y);
-           
+            
             const meanY = sY / n;
             const meanX = sX / n;
+
             // Deviations
             const Sxx = sX2 - (sX*sX)/n;
             const Syy = sY2 - (sY*sY)/n;
             const Sxy = sXY - (sX*sY)/n;
+
             // Coefficients
             const b1 = Sxx !== 0 ? Sxy / Sxx : 0;
             const b0 = meanY - b1 * meanX;
+
             // Goodness of Fit
             let ESS = 0, RSS = 0;
             for(let i=0; i<n; i++) {
@@ -385,15 +343,18 @@
                 ESS += Math.pow(y_hat - meanY, 2);
                 RSS += Math.pow(resid, 2);
             }
-            const TSS = Syy;
+
+            const TSS = Syy; 
             const R2 = TSS !== 0 ? ESS / TSS : 0;
             const AdjR2 = (n > 2) ? 1 - ( (RSS/(n-2)) / (TSS/(n-1)) ) : 0;
+
             const sigma2 = (n > 2) ? RSS / (n - 2) : 0;
             const se_b1 = (Sxx > 0 && sigma2 >= 0) ? Math.sqrt(sigma2 / Sxx) : 0;
             const se_b0 = (Sxx > 0 && sigma2 >= 0) ? Math.sqrt(sigma2 * (1/n + (meanX*meanX)/Sxx)) : 0;
             const t_b0 = se_b0 !== 0 ? b0 / se_b0 : 0;
             const t_b1 = se_b1 !== 0 ? b1 / se_b1 : 0;
             const F = (RSS > 0 && n > 2) ? (ESS/1) / (RSS/(n-2)) : 0;
+
             return {
                 n, meanY, meanX1: meanX,
                 sumY: sY, sumX1: sX, sumY2: sY2, sumX1_2: sX2, sumX1Y: sXY,
@@ -406,6 +367,7 @@
                 ]
             };
         }
+
         // Matrix helpers
         const matMul = (A, B) => {
             let m = A.length, n = A[0].length, p = B[0].length;
@@ -428,7 +390,7 @@
             let det = m[0][0] * (m[1][1] * m[2][2] - m[2][1] * m[1][2]) -
                       m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) +
                       m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
-            if (Math.abs(det) < 1e-12) return null;
+            if (Math.abs(det) < 1e-12) return null; 
             let invdet = 1 / det;
             let minv = Array(3).fill(0).map(()=>Array(3).fill(0));
             minv[0][0] = (m[1][1] * m[2][2] - m[2][1] * m[1][2]) * invdet;
@@ -442,26 +404,33 @@
             minv[2][2] = (m[0][0] * m[1][1] - m[1][0] * m[0][1]) * invdet;
             return minv;
         };
+
         function calculateMultipleRegression(Y_arr, X1_arr, X2_arr) {
             const n = Y_arr.length;
-            const k = 3;
+            const k = 3; 
+
             let X = [];
             let Y = [];
             for(let i=0; i<n; i++) {
-                X.push([1, X1_arr[i], X2_arr[i]);
+                X.push([1, X1_arr[i], X2_arr[i]]);
                 Y.push([Y_arr[i]]);
             }
+
             let Xt = transpose(X);
-            let XtX = matMul(Xt, X);
+            let XtX = matMul(Xt, X); 
             let XtX_inv = invert3x3(XtX);
+
             if (!XtX_inv) throw new Error("Calculation Error: Matrix Singular.");
+
             let XtY = matMul(Xt, Y);
             let Beta = matMul(XtX_inv, XtY);
+
             let b0 = Beta[0][0], b1 = Beta[1][0], b2 = Beta[2][0];
             let sY = sum(Y_arr), sX1 = sum(X1_arr), sX2 = sum(X2_arr);
             let sY2 = sumSq(Y_arr), sX1sq = sumSq(X1_arr), sX2sq = sumSq(X2_arr);
             let sX1Y = sumProd(X1_arr, Y_arr), sX2Y = sumProd(X2_arr, Y_arr), sX1X2 = sumProd(X1_arr, X2_arr);
             let meanY = sY/n, meanX1 = sX1/n, meanX2 = sX2/n;
+
             let ESS = 0, RSS = 0;
             for(let i=0; i<n; i++) {
                 let y_hat = b0 + b1*X1_arr[i] + b2*X2_arr[i];
@@ -469,14 +438,17 @@
                 ESS += Math.pow(y_hat - meanY, 2);
                 RSS += Math.pow(resid, 2);
             }
+
             let TSS = sumSq(Y_arr.map(y => y - meanY));
             let R2 = TSS !== 0 ? ESS / TSS : 0;
             let AdjR2 = (n > k) ? 1 - ( (RSS/(n-k)) / (TSS/(n-1)) ) : 0;
             let sigma2 = (n > k) ? RSS / (n-k) : 0;
             let F = (RSS > 0 && n > k) ? (ESS/(k-1)) / (RSS/(n-k)) : 0;
+
             let SE_b0 = (sigma2 >= 0) ? Math.sqrt(sigma2 * XtX_inv[0][0]) : 0;
             let SE_b1 = (sigma2 >= 0) ? Math.sqrt(sigma2 * XtX_inv[1][1]) : 0;
             let SE_b2 = (sigma2 >= 0) ? Math.sqrt(sigma2 * XtX_inv[2][2]) : 0;
+
             return {
                 n, meanY, meanX1, meanX2,
                 sumY: sY, sumX1: sX1, sumX2: sX2,
@@ -491,11 +463,12 @@
                 ]
             };
         }
+
         // --- UI HANDLERS ---
         function handleModelChange(model) {
             currentModel = model;
             currentResult = null;
-           
+            
             // Toggle Styling
             const simpleLabel = document.getElementById('label-simple');
             const simpleText = document.getElementById('text-simple');
@@ -503,26 +476,31 @@
             const multipleText = document.getElementById('text-multiple');
             const x2Container = document.getElementById('containerX2');
             const x1Label = document.getElementById('labelX1');
+
             if (model === 'simple') {
                 simpleLabel.classList.add('bg-sky-50', 'border-sky-200', 'shadow-sm');
                 simpleLabel.classList.remove('bg-transparent', 'border-transparent', 'hover:bg-gray-50');
                 simpleText.classList.replace('text-gray-600', 'text-sky-700');
+
                 multipleLabel.classList.remove('bg-sky-50', 'border-sky-200', 'shadow-sm');
                 multipleLabel.classList.add('bg-transparent', 'border-transparent', 'hover:bg-gray-50');
                 multipleText.classList.replace('text-sky-700', 'text-gray-600');
-               
+                
                 x2Container.classList.add('hidden');
                 x1Label.textContent = "Values for X";
             } else {
                 multipleLabel.classList.add('bg-sky-50', 'border-sky-200', 'shadow-sm');
                 multipleLabel.classList.remove('bg-transparent', 'border-transparent', 'hover:bg-gray-50');
                 multipleText.classList.replace('text-gray-600', 'text-sky-700');
+
                 simpleLabel.classList.remove('bg-sky-50', 'border-sky-200', 'shadow-sm');
                 simpleLabel.classList.add('bg-transparent', 'border-transparent', 'hover:bg-gray-50');
                 simpleText.classList.replace('text-sky-700', 'text-gray-600');
+
                 x2Container.classList.remove('hidden');
                 x1Label.textContent = "Values for X₁";
             }
+
             // Reset UI
             document.getElementById('resultsContent').classList.add('hidden');
             document.getElementById('placeholderResults').classList.remove('hidden');
@@ -530,9 +508,10 @@
             document.getElementById('btnPdf').classList.remove('flex');
             document.getElementById('btnPdf').classList.add('hidden');
             document.getElementById('calculatedBadge').classList.add('hidden');
-           
+            
             updateCounts();
         }
+
         function updateCounts() {
             const Y = parseInput(document.getElementById('inputY').value);
             const X1 = parseInput(document.getElementById('inputX1').value);
@@ -540,11 +519,13 @@
             document.getElementById('countsDisplay').innerHTML = `n(Y) = ${Y.length} , n(${xText}) = ${X1.length}`;
             document.getElementById('errorBox').classList.add('hidden');
         }
+
         function calculate() {
             const Y = parseInput(document.getElementById('inputY').value);
             const X1 = parseInput(document.getElementById('inputX1').value);
             const X2 = parseInput(document.getElementById('inputX2').value);
             const errBox = document.getElementById('errorBox');
+
             // Validate
             if (Y.length === 0 || X1.length === 0) {
                 errBox.textContent = "Error: Input fields cannot be empty.";
@@ -561,25 +542,32 @@
                 errBox.classList.remove('hidden');
                 return;
             }
+
             errBox.classList.add('hidden');
+
             try {
                 if (currentModel === 'simple') {
                     currentResult = calculateSimpleRegression(Y, X1);
                 } else {
                     currentResult = calculateMultipleRegression(Y, X1, X2);
                 }
-                // Increment Counters
+
+                // Increment Global Usage Counter
                 updateGlobalCount(true);
+
                 renderResults();
+
                 // Scroll
                 setTimeout(() => {
                     document.getElementById('resultsCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 100);
+
             } catch (e) {
                 errBox.textContent = e.message || "Calculation Error";
                 errBox.classList.remove('hidden');
             }
         }
+
         function statItemHtml(label, value, delay) {
             return `
             <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 hover:bg-white hover:border-sky-100 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] animate-zoom-in" style="animation-delay: ${delay}ms">
@@ -587,10 +575,11 @@
                 <span class="text-lg font-bold text-gray-800">${typeof value === 'number' ? value.toFixed(4) : value}</span>
             </div>`;
         }
+
         function renderResults() {
             const r = currentResult;
             const content = document.getElementById('resultsContent');
-           
+            
             // 1. Data Summary
             let html = `
                 <div class="animate-slide-up" style="animation-delay: 100ms">
@@ -613,6 +602,7 @@
                     </div>
                 </div>
             `;
+
             // 2. Deviations (Simple)
             if (r.Sxx !== undefined) {
                 html += `
@@ -627,6 +617,7 @@
                     </div>
                 </div>`;
             }
+
             // 3. Model
             html += `
                 <div class="animate-slide-up" style="animation-delay: 300ms">
@@ -637,6 +628,7 @@
                         <div class="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
                         ${r.formula}
                     </div>
+
                     <h4 class="flex items-center justify-between text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">
                         <div class="flex items-center gap-2">
                             <span class="w-1.5 h-1.5 rounded-full bg-pink-500"></span> Analysis of Variance
@@ -656,9 +648,10 @@
                     </div>
                 </div>
             `;
+
             // 4. Coefficients
             let rows = r.coefficients.map((c, i) => `
-                <tr class="hover:bg-sky-50/50 transition-colors duration-200 animate-fade-in" style="animation-delay: ${1200 + i * 100}ms;">
+                <tr class="hover:bg-sky-50/50 transition-colors duration-200">
                     <td class="py-4 px-4 text-left font-bold text-gray-800">${c.name}</td>
                     <td class="py-4 px-4">${c.value.toFixed(4)}</td>
                     <td class="py-4 px-4 text-gray-500">${c.se.toFixed(4)}</td>
@@ -666,13 +659,14 @@
                     <td class="py-4 px-4 text-center t-badge-cell"></td>
                 </tr>
             `).join('');
+
             html += `
                 <div class="animate-slide-up" style="animation-delay: 400ms">
                     <h4 class="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">
                         <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Coefficients & Inference
                     </h4>
-                    <div class="scrollable-table overflow-x-auto rounded-xl border border-gray-100 shadow-sm bg-white" id="coefficientsTable">
-                        <table class="w-full text-sm text-right min-w-[600px]">
+                    <div class="overflow-hidden rounded-xl border border-gray-100 shadow-sm bg-white">
+                        <table class="w-full text-sm text-right">
                             <thead class="bg-gray-50 text-gray-500 font-semibold border-b border-gray-100">
                                 <tr>
                                     <th class="py-4 px-4 text-left">Var</th>
@@ -689,8 +683,9 @@
                     </div>
                 </div>
             `;
+
             content.innerHTML = html;
-           
+            
             // Show Elements
             document.getElementById('placeholderResults').classList.add('hidden');
             content.classList.remove('hidden');
@@ -698,50 +693,29 @@
             document.getElementById('btnPdf').classList.remove('hidden');
             document.getElementById('btnPdf').classList.add('flex');
             document.getElementById('calculatedBadge').classList.remove('hidden');
+
             updateSignificance();
-            initScrollIndicators();
         }
-        function initScrollIndicators() {
-            const tables = document.querySelectorAll('.scrollable-table');
-            tables.forEach(table => {
-                const innerTable = table.querySelector('table');
-                if (innerTable.offsetWidth > table.clientWidth) {
-                    table.classList.add('scroll-start');
-                    table.classList.add('scroll-end');
-                    table.addEventListener('scroll', () => {
-                        const scrollLeft = table.scrollLeft;
-                        const scrollWidth = table.scrollWidth;
-                        const clientWidth = table.clientWidth;
-                        if (scrollLeft > 0) {
-                            table.classList.remove('scroll-start');
-                        } else {
-                            table.classList.add('scroll-start');
-                        }
-                        if (scrollLeft + clientWidth < scrollWidth - 1) {
-                            table.classList.remove('scroll-end');
-                        } else {
-                            table.classList.add('scroll-end');
-                        }
-                    });
-                }
-            });
-        }
+
         function updateSignificance() {
             if (!currentResult) return;
+
             const tCrit = parseFloat(document.getElementById('inputTCrit').value);
             const fCrit = parseFloat(document.getElementById('inputFCrit').value);
+
             // Update F
             const fBadge = document.getElementById('fStatBadge');
             const fContainer = document.getElementById('fStatContainer');
             const fCheckText = document.getElementById('fCheckText');
+
             if (!isNaN(fCrit)) {
                 const isSig = currentResult.F > fCrit;
                 fCheckText.textContent = `Checking if F > ${fCrit}`;
                 fCheckText.classList.add('animate-pop');
-               
+                
                 fBadge.className = `inline-flex items-center px-2.5 py-1 rounded-md text-[10px] md:text-xs font-bold uppercase tracking-wider shadow-sm animate-pop ${isSig ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' : 'bg-rose-100 text-rose-700 border border-rose-200'}`;
                 fBadge.textContent = isSig ? 'Reject H₀' : 'Fail to Reject H₀';
-               
+                
                 fContainer.className = `rounded-xl transition-all duration-300 ${isSig ? 'ring-2 ring-emerald-400 bg-emerald-50/50' : 'ring-2 ring-rose-300 bg-rose-50/50'}`;
             } else {
                 fBadge.textContent = '';
@@ -749,6 +723,7 @@
                 fContainer.className = 'rounded-xl transition-all duration-300';
                 fCheckText.textContent = '';
             }
+
             // Update t
             const tCheckText = document.getElementById('tCheckText');
             if (!isNaN(tCrit)) {
@@ -756,4 +731,29 @@
                 tCheckText.classList.add('animate-pop');
                 document.getElementById('thDecision').innerHTML = `H₀ Decision<br/><span class="text-[10px] font-normal">(vs ${tCrit})</span>`;
             } else {
-                t
+                tCheckText.textContent = '';
+                document.getElementById('thDecision').textContent = 'H₀ Decision';
+            }
+
+            // Loop rows
+            const tCells = document.querySelectorAll('.t-val-cell');
+            const tBadges = document.querySelectorAll('.t-badge-cell');
+
+            tCells.forEach((cell, idx) => {
+                const tVal = parseFloat(cell.getAttribute('data-t'));
+                const badgeCell = tBadges[idx];
+
+                if (!isNaN(tCrit)) {
+                    const isSig = Math.abs(tVal) > tCrit;
+                    cell.className = `py-4 px-4 font-bold t-val-cell ${isSig ? 'text-emerald-600' : 'text-rose-500'}`;
+                    badgeCell.innerHTML = `<span class="inline-flex items-center px-2.5 py-1 rounded-md text-[10px] md:text-xs font-bold uppercase tracking-wider shadow-sm animate-pop ${isSig ? 'bg-emerald-100 text-emerald-700 border border-emerald-200' : 'bg-rose-100 text-rose-700 border border-rose-200'}">${isSig ? 'Reject H₀' : 'Fail to Reject H₀'}</span>`;
+                } else {
+                    cell.className = `py-4 px-4 font-bold t-val-cell text-gray-800`;
+                    badgeCell.innerHTML = '';
+                }
+            });
+        }
+    </script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
