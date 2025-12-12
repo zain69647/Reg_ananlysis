@@ -97,6 +97,52 @@
         textarea::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
         textarea::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
         textarea::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+        /* Scroll indicators for table */
+        .scrollable-table {
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .scrollable-table::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -10px;
+            width: 10px;
+            background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.05));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .scrollable-table::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -10px;
+            width: 10px;
+            background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.05));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .scrollable-table.scroll-start::before {
+            opacity: 1;
+        }
+
+        .scrollable-table.scroll-end::after {
+            opacity: 1;
+        }
+
+        @media (min-width: 640px) {
+            .scrollable-table::before, .scrollable-table::after {
+                display: none;
+            }
+        }
     </style>
 <link rel="stylesheet" href="/index.css">
 </head>
@@ -402,7 +448,7 @@
             let X = [];
             let Y = [];
             for(let i=0; i<n; i++) {
-                X.push([1, X1_arr[i], X2_arr[i]]);
+                X.push([1, X1_arr[i], X2_arr[i]);
                 Y.push([Y_arr[i]]);
             }
             let Xt = transpose(X);
@@ -625,8 +671,8 @@
                     <h4 class="flex items-center gap-2 text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">
                         <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span> Coefficients & Inference
                     </h4>
-                    <div class="overflow-x-auto rounded-xl border border-gray-100 shadow-sm bg-white">
-                        <table class="w-full text-sm text-right min-w-max">
+                    <div class="scrollable-table overflow-x-auto rounded-xl border border-gray-100 shadow-sm bg-white" id="coefficientsTable">
+                        <table class="w-full text-sm text-right min-w-[600px]">
                             <thead class="bg-gray-50 text-gray-500 font-semibold border-b border-gray-100">
                                 <tr>
                                     <th class="py-4 px-4 text-left">Var</th>
@@ -653,6 +699,32 @@
             document.getElementById('btnPdf').classList.add('flex');
             document.getElementById('calculatedBadge').classList.remove('hidden');
             updateSignificance();
+            initScrollIndicators();
+        }
+        function initScrollIndicators() {
+            const tables = document.querySelectorAll('.scrollable-table');
+            tables.forEach(table => {
+                const innerTable = table.querySelector('table');
+                if (innerTable.offsetWidth > table.clientWidth) {
+                    table.classList.add('scroll-start');
+                    table.classList.add('scroll-end');
+                    table.addEventListener('scroll', () => {
+                        const scrollLeft = table.scrollLeft;
+                        const scrollWidth = table.scrollWidth;
+                        const clientWidth = table.clientWidth;
+                        if (scrollLeft > 0) {
+                            table.classList.remove('scroll-start');
+                        } else {
+                            table.classList.add('scroll-start');
+                        }
+                        if (scrollLeft + clientWidth < scrollWidth) {
+                            table.classList.remove('scroll-end');
+                        } else {
+                            table.classList.add('scroll-end');
+                        }
+                    });
+                }
+            });
         }
         function updateSignificance() {
             if (!currentResult) return;
